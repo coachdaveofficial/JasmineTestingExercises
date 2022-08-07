@@ -38,7 +38,17 @@ function setupIntialValues() {
 // Get the current values from the UI
 // Update the monthly payment
 function update() {
+  const loanValues = {
+    loanAmount : document.getElementById("loan-amount").value,
+    loanYears : document.getElementById("loan-years").value,
+    loanRate : document.getElementById("loan-rate").value
+    };
   
+
+  updateMonthly(calculateMonthlyPayment(loanValues));
+
+
+
 
 
 
@@ -55,12 +65,15 @@ function calculateMonthlyPayment(values) {
 
   const periodicInterest = (loanRate / 12);
   const totalPayments = (loanYears * 12);
-  const monthlyPayment = (loanAmount * periodicInterest) / (1 - ((1 + periodicInterest) ** (-totalPayments)));
+  const monthlyPayment = ((loanAmount * periodicInterest) / (1 - ((1 + periodicInterest) ** (-totalPayments)))).toFixed(2);
 
   return monthlyPayment;
 }
 
+
 // Given a string representing the monthly payment value,
 // update the UI to show the value.
 function updateMonthly(monthly) {
+  const paymentSpan = document.getElementById("monthly-payment");
+  paymentSpan.innerText = `$${monthly}`;
 }
