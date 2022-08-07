@@ -61,7 +61,7 @@ function calculateMonthlyPayment(values) {
   const loanObjKeys = Object.keys(values);
   const loanAmount = parseFloat(values[loanObjKeys[0]]);
   const loanYears = parseFloat(values[loanObjKeys[1]]);
-  const loanRate = parseFloat(values[loanObjKeys[2]]);
+  const loanRate = parseFloat("0." + values[loanObjKeys[2]]);
 
   const periodicInterest = (loanRate / 12);
   const totalPayments = (loanYears * 12);
